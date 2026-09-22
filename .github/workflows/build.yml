@@ -1,0 +1,31 @@
+name: Decompilation Progress CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-cache-dependency-path: 'tools/requirements.txt'
+
+    - name: Install dependencies
+      run: |
+        pip install splat objdiff-cli
+
+    - name: Run configure script
+      run: |
+        python3 configure.py
+
+    - name: Run build verification
+      run: |
+        python3 tools/convertir_non_matching.py
