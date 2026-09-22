@@ -1,0 +1,235 @@
+// =========================================================================
+// XENOBLADE CHRONICLES 2 (BF2) - CAMERA SUBSYSTEM SYMBOLS
+// FORMAT: function_name = vram_address; // type:func file:path status:state
+// =========================================================================
+
+gf_Camera_findActiveEntry = 0x002b1b38; // type:func status:non_matching
+
+// --- Module: gf/asset/gf_asset_manager.cpp ---
+gf_AssetManager_validatePackHeader 		= 0x00296928; // type:func file:src/gf/asset/gf_asset_manager.cpp status:non_matching
+gf_AssetManager_clearContainers 		= 0x00296998; // type:func file:src/gf/asset/gf_asset_manager.cpp status:non_matching
+gf_AssetManager_flushContainers 		= 0x002969e8; // type:func file:src/gf/asset/gf_asset_manager.cpp status:non_matching
+gf_AssetManager_setupContainers 		= 0x00296a5c; // type:func file:src/gf/asset/gf_asset_manager.cpp status:non_matching
+gf_AssetManager_teardownContainers 		= 0x00296b28; // type:func file:src/gf/asset/gf_asset_manager.cpp status:non_matching
+gf_AssetManager_initStreamDescriptor 		= 0x002978cc; // type:func file:src/gf/asset/gf_asset_manager.cpp status:non_matching
+gf_AssetManager_commitStreamNodes 		= 0x00297dcc; // type:func file:src/gf/asset/gf_asset_manager.cpp status:non_matching
+gf_AssetManager_initializeStreamQueue 		= 0x00297fc8; // type:func file:src/gf/asset/gf_asset_manager.cpp status:non_matching
+
+// --- Module: gf/asset/gf_asset_pack.cpp ---
+gf_AssetPack_initializeStreamQueue 		= 0x002981a0; // type:func file:src/gf/asset/gf_asset_pack.cpp status:non_matching
+
+// --- Module: gf/asset/gf_asset_resource.cpp ---
+gf_AssetResource_dtor 				= 0x002983ac; // type:func file:src/gf/asset/gf_asset_resource.cpp status:non_matching
+gf_AssetResource_getNextResource 		= 0x00298428; // type:func file:src/gf/asset/gf_asset_resource.cpp status:non_matching
+
+// --- Module: gf/asset/gf_asset_setup.cpp ---
+gf_AssetSetup_ctor 				= 0x0029df34; // type:func file:src/gf/asset/gf_asset_setup.cpp status:non_matching
+
+// --- Module: gf/asset/gf_asset_filesize_pool.cpp ---
+gf_AssetFilesizePool_initializeExtendResource 	= 0x002ab7c0; // type:func file:src/gf/asset/gf_asset_filesize_pool.cpp status:non_matching
+
+// --- Module: gf/asset/gf_asset_slot.cpp ---
+gf_AssetSlot_ctor 				= 0x002ac76c; // type:func file:src/gf/asset/gf_asset_slot.cpp status:non_matching
+
+// --- Module: gf/asset/gf_asset_slot_mapping.cpp ---
+gf_AssetSlotMapping_indexActiveDescriptors 	= 0x002c5718; // type:func file:src/gf/asset/gf_asset_slot_mapping.cpp status:non_matching
+
+// --- Module: gf_camera_script.cpp ---
+gf_CameraScript_selectRandom 			= 0x002cb568; // type:func file:src/gf/camera/script/gf_camera_script.cpp status:non_matching
+gf_CameraScript_parseParam 			= 0x002cb750; // type:func file:src/gf/camera/script/gf_camera_script.cpp status:non_matching
+gf_CameraScript_allocateManager 		= 0x002cd170; // type:func file:src/gf/camera/script/gf_camera_script.cpp status:non_matching
+
+// --- Module: gf_camera_player.cpp ---
+gf_CameraPlayer_updateLookState 		= 0x002bcabc; // type:func file:src/gf/camera/gf_camera_player.cpp status:non_matching
+gf_CameraPlayer_getTargetDescriptor 		= 0x002bcfa4; // type:func file:src/gf/camera/gf_camera_player.cpp status:non_matching
+gf_CameraPlayer_resolveTargetInstance 		= 0x002bd0cc; // type:func file:src/gf/camera/gf_camera_player.cpp status:non_matching
+gf_CameraPlayer_getScriptDescriptor 		= 0x002bd248; // type:func file:src/gf/camera/gf_camera_player.cpp status:non_matching
+gf_CameraPlayer_ctor 				= 0x002bd2dc; // type:func file:src/gf/camera/gf_camera_player.cpp status:non_matching
+gf_CameraPlayer_getScriptDescriptor2 		= 0x002bdd68; // type:func file:src/gf/camera/gf_camera_player.cpp status:non_matching
+gf_CameraPlayer_getUpperDescriptor 		= 0x002bff78; // type:func file:src/gf/camera/gf_camera_player.cpp status:non_matching
+gf_CameraPlayer_getPlayerTarget 		= 0x002c063c; // type:func file:src/gf/camera/gf_camera_player.cpp status:non_matching
+
+// --- Module: gf_camera_chain_attack.cpp ---
+gf_CameraChainAttack_setupTracking 		= 0x002b516c; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_updateState 		= 0x002b51d8; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_findAnimationIndex 	= 0x002b5878; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_formatDebugString 		= 0x002b5934; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_setupSpecialMode 		= 0x002b5a34; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_initSpecialArts 		= 0x002b5e08; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_initSingleArts 		= 0x002b5f7c; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_ctor 			= 0x002b606c; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_getPilotDescriptor 	= 0x002b808c; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_initCollisionCam 		= 0x002b8120; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_initPilotStance 		= 0x002b8764; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_initPilotLerp 		= 0x002b8834; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_resolveTargetInstance 	= 0x002bcff8; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_initCameraModes 		= 0x002bd4e4; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_resolveDistanceTarget 	= 0x002bdcb0; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_initDefaultParams 		= 0x002bde38; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_interpolatePilot2 		= 0x002bebd8; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+gf_CameraChainAttack_interpolatePilot3 		= 0x002bf51c; // type:func file:src/gf/camera/chain_attack/gf_camera_chain_attack.cpp status:non_matching
+
+
+// --- Module: gf_camera_fusion_combo.cpp ---
+gf_CameraFusionCombo_dispatchArtsTransition 	= 0x002b60ac; // type:func file:src/gf/camera/fusion_combo/gf_camera_fusion_combo.cpp status:non_matching
+gf_CameraFusionCombo_formatEventString 		= 0x002b78e8; // type:func file:src/gf/camera/fusion_combo/gf_camera_fusion_combo.cpp status:non_matching
+
+// --- Module: gimmick/gf_camera_gimmick.cpp ---
+gf_CameraGimmick_ctor 				= 0x002c06b0; // type:func file:src/gf/camera/gimmick/gf_camera_gimmick.cpp status:non_matching
+gf_CameraGimmick_initGimmickCam 		= 0x002c06e8; // type:func file:src/gf/camera/gimmick/gf_camera_gimmick.cpp status:non_matching
+
+// --- Module: gf_camera_player_target.cpp ---
+gf_CameraPlayerTarget_initArtsTracking 		= 0x002c0968; // type:func file:src/gf/camera/gf_camera_player_target.cpp status:non_matching
+gf_CameraPlayerTarget_updateState 		= 0x002c0b84; // type:func file:src/gf/camera/gf_camera_player_target.cpp status:non_matching
+
+// --- Module: gf_camera_subview.cpp ---
+gf_CameraSubview_syncBdatDistance 		= 0x002c0c74; // type:func file:src/gf/camera/gf_camera_subview.cpp status:non_matching
+gf_CameraSubview_updateState 			= 0x002c0dc0; // type:func file:src/gf/camera/gf_camera_subview.cpp status:non_matching
+
+// --- Module: plugin/gf_camera_plugin_ship_roll.cpp ---
+gf_CameraPlugin_updateState 			= 0x002c0eb0; // type:func file:src/gf/camera/plugin/gf_camera_plugin_ship_roll.cpp status:non_matching
+gf_CameraPlugin_updateState2 			= 0x002c0fa0; // type:func file:src/gf/camera/plugin/gf_camera_plugin_ship_roll.cpp status:non_matching
+gf_CameraPlugin_ctor 				= 0x002c10c8; // type:func file:src/gf/camera/plugin/gf_camera_plugin_ship_roll.cpp status:non_matching
+gf_CameraPlugin_updateState3 			= 0x002c1130; // type:func file:src/gf/camera/plugin/gf_camera_plugin_ship_roll.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_bgm.cpp ---
+FUN_002d20e0 = 0x002d20e0; // type:func file:src/gf/data/gf_bdat_bgm.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_blade.cpp ---
+FUN_002d212c = 0x002d212c; // type:func file:src/gf/data/gf_bdat_blade.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_btl.cpp ---
+FUN_002d2170 = 0x002d2170; // type:func file:src/gf/data/gf_bdat_btl.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_chrbl.cpp ---
+FUN_002d21b8 = 0x002d21b8; // type:func file:src/gf/data/gf_bdat_chrbl.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_chrdr.cpp ---
+FUN_002d2200 = 0x002d2200; // type:func file:src/gf/data/gf_bdat_chrdr.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_chrenarrange.cpp ---
+FUN_002d2248 = 0x002d2248; // type:func file:src/gf/data/gf_bdat_chrenarrange.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_chrenparam.cpp ---
+FUN_002d2290 = 0x002d2290; // type:func file:src/gf/data/gf_bdat_chrenparam.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_cond.cpp ---
+FUN_002d22d8 = 0x002d22d8; // type:func file:src/gf/data/gf_bdat_cond.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_item.cpp ---
+FUN_002d2320 = 0x002d2320; // type:func file:src/gf/data/gf_bdat_item.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_lookat.cpp ---
+FUN_002d2368 = 0x002d2368; // type:func file:src/gf/data/gf_bdat_lookat.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_maplist.cpp ---
+FUN_002d23b0 = 0x002d23b0; // type:func file:src/gf/data/gf_bdat_maplist.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_msg.cpp ---
+FUN_002d23f8 = 0x002d23f8; // type:func file:src/gf/data/gf_bdat_msg.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_quest.cpp ---
+FUN_002d2440 = 0x002d2440; // type:func file:src/gf/data/gf_bdat_quest.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_rsc.cpp ---
+FUN_002d2488 = 0x002d2488; // type:func file:src/gf/data/gf_bdat_rsc.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_shop.cpp ---
+FUN_002d24d0 = 0x002d24d0; // type:func file:src/gf/data/gf_bdat_shop.cpp status:non_matching
+
+// --- Module: gf/data/gf_bdat_unique_motion.cpp ---
+FUN_002d2518 = 0x002d2518; // type:func file:src/gf/data/gf_bdat_unique_motion.cpp status:non_matching
+
+// --- Module: gf/data/gf_data_aoc.cpp ---
+FUN_002d2560 = 0x002d2560; // type:func file:src/gf/data/gf_data_aoc.cpp status:non_matching
+
+// --- Module: gf/data/gf_data_bdat.cpp ---
+FUN_002d25a8 = 0x002d25a8; // type:func file:src/gf/data/gf_data_bdat.cpp status:non_matching
+
+// --- Module: gf/data/gf_data_manager.cpp ---
+FUN_002d25f0 = 0x002d25f0; // type:func file:src/gf/data/gf_data_manager.cpp status:non_matching
+
+// --- Module: gf/data/gf_data_obj.cpp ---
+FUN_002d2638 = 0x002d2638; // type:func file:src/gf/data/gf_data_obj.cpp status:non_matching
+
+// --- Module: gf/data/gf_data_store.cpp ---
+FUN_002d2680 = 0x002d2680; // type:func file:src/gf/data/gf_data_store.cpp status:non_matching
+
+// --- Module: gf/data/gf_game_flag.cpp ---
+FUN_002d26c8 = 0x002d26c8; // type:func file:src/gf/data/gf_game_flag.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_bgm.cpp ---
+gf_FieldBgm_initializeStaticDatabase            = 0x003150d8; // type:func file:src/gf/field/gf_field_bgm.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_collect.cpp ---
+gf_FieldCollect_queryBladeSkillStatus 		= 0x003177ec; // type:func file:src/gf/field/gf_field_collect.cpp status:non_matching
+
+
+// --- Module: gf/field/gf_field_dmg.cpp ---
+gf_FieldDmg_queryEnvironmentalDamageStatus 	= 0x00317ff0; // type:func file:src/gf/field/gf_field_dmg.cpp status:non_matching
+
+
+// --- Module: gf/field/gf_field_gimmick.cpp ---
+gf_FieldGimmick_initializeStaticDatabase 	= 0x0035f1a4; // type:func file:src/gf/field/gf_field_gimmick.cpp status:non_matching
+gf_FieldGimmick_evaluateCollisionTrigger  	= 0x00360880; // type:func file:src/gf/field/gf_field_gimmick.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_locator.cpp ---
+gf_FieldLocator_dtor                            = 0x003614e8; // type:func file:src/gf/field/gf_field_locator.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_lod.cpp ---
+FUN_003175cc = 0x003175cc; // type:func file:src/gf/field/gf_field_lod.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_manager.cpp ---
+FUN_00315040 = 0x00315040; // type:func file:src/gf/field/gf_field_manager.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_mapse.cpp ---
+FUN_00317a94 = 0x00317a94; // type:func file:src/gf/field/gf_field_mapse.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_map_gimmick.cpp ---
+FUN_00317874 = 0x00317874; // type:func file:src/gf/field/gf_field_map_gimmick.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_sound.cpp ---
+FUN_00317984 = 0x00317984; // type:func file:src/gf/field/gf_field_sound.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_tbox.cpp ---
+FUN_00317f68 = 0x00317f68; // type:func file:src/gf/field/gf_field_tbox.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_time.cpp ---
+FUN_0031817c = 0x0031817c; // type:func file:src/gf/field/gf_field_time.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_weather.cpp ---
+FUN_0031825c = 0x00318200; // type:func file:src/gf/field/gf_field_weather.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_weather_obj.cpp ---
+FUN_0031833c = 0x00318284; // type:func file:src/gf/field/gf_field_weather_obj.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_zone.cpp ---
+FUN_00318308 = 0x00318308; // type:func file:src/gf/field/gf_field_zone.cpp status:non_matching
+
+// --- Module: gf/field/gf_field_zone_script.cpp ---
+FUN_0031838c = 0x0031838c; // type:func file:src/gf/field/gf_field_zone_script.cpp status:non_matching
+
+// --- Module: gf/field/gf_fobj_manager.cpp ---
+FUN_00318498 = 0x00318498; // type:func file:src/gf/field/gf_fobj_manager.cpp status:non_matching
+
+gf_Memory_getPoolBlock 		= 0x0042cbbc; // type:func status:non_matching
+gf_Memory_allocNewDebug 	= 0x0042d58c; // type:func status:non_matching
+gf_Object_isActiveIndex 	= 0x002aee80; // type:func status:non_matching
+gf_String_formatArgs 		= 0x001c53dc; // type:func status:non_matching
+gf_Camera_registerDescriptor 	= 0x002b3540; // type:func status:non_matching
+
+
+// --- Empty Structural Modules (Identified via Ghidra XREFs, functions pending verification) ---
+
+
+// --- Unresolved / Orphan Camera Functions (From original symbols.h) ---
+FUN_002c599c = 0x002c599c; // type:func file:src/gf/camera/gf_camera_unknown.cpp status:unresearched
+FUN_002c79ec = 0x002c79ec; // type:func file:src/gf/camera/gf_camera_unknown.cpp status:non_matching
+
+
+
+sdk
+
+
+nn_diag_detail_LogImpl		=0x00797968
+nn_diag_detail_AbortImpl	=0x00797a88

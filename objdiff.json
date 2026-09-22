@@ -1,0 +1,12 @@
+{
+  "custom_make": "make",
+  "target_dir": "build/target",
+  "base_dir": "build/base",
+  "build_base": false,
+  "build_target": false,
+  "watch_patterns": [
+    "src/**/*.cpp",
+    "src/**/*.h",
+    "asm/**/*.s"
+  ]
+}

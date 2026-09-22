@@ -1,0 +1,39 @@
+# =============================================================================
+# SPLAT CONFIGURATION PROFILE - XENOBLADE CHRONICLES 2 DECOMPILATION
+# BUILD ID: A75512BE30BB2A8C880177505D7A0B3E (Segmento main)
+# =============================================================================
+options:
+  platform: switch
+  architecture: aarch64
+  compiler: clang
+  base_path: ..
+  target_path: baserom/main_uncompressed.bin
+  asm_path: asm
+  src_path: src
+  build_path: build
+  extensions_path: tools
+  symbol_map_path: symbols.txt
+  mips_to_c_path: tools/mips_to_c
+  generate_asm_dependencies: true
+
+segments:
+  - name: header
+    type: header
+    start: 0x0
+
+  - name: text
+    type: code
+    start: 0x100000
+    vram: 0x7100000000
+
+  - name: rodata
+    type: rodata
+    start: 0x86b4000
+
+  - name: data
+    type: data
+    start: 0xa57d000
+
+  - name: bss
+    type: bss
+    start: 0xb4c218

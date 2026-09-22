@@ -1,0 +1,22 @@
+# Excluir binarios compilados y archivos temporales del Makefile
+build/
+*.o
+*.d
+*.elf
+
+# EXCLUIR DATOS PRIVADOS CON DERECHOS DE AUTOR (Consola / RomFS / Llaves)
+# Protege tu cuenta de GitHub de reclamos legales
+*baserom/
+*asm/
+*.keys
+*.nsp
+*.xci
+*.bin
+
+# Excluir proyectos y bases de datos de Ghidra
+*.rep/
+*.gpr
+*.lock  
+*.lock~  
+symbols.json  
+BDAT_Manifest_Index.md 

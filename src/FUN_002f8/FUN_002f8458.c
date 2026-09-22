@@ -1,0 +1,5 @@
+// Función: FUN_002f8458 (Módulo: FUN_002f8)
+
+void FUN_002f8458(void) {
+    __asm__("nop");
+}
