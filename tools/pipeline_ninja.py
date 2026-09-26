@@ -43,11 +43,17 @@ def main():
         print(f"[-] DIGITAL ERROR: Route map file not found at: {txt_path}")
         return
 
-    # Clean routes without quotes for the Shinobi engine
+    # Detectar el sistema operativo para adaptar las extensiones
+    import platform
+    is_windows = platform.system().lower() == "windows"
+    ext_bin = ".exe" if is_windows else ""
+
+    # Rutas limpias adaptables para el motor Shinobi
     tool_dir = "D:/devkitPro/devkitA64/bin/"
-    cxx = f"{tool_dir}aarch64-none-elf-g++.exe"
-    as_tool = f"{tool_dir}aarch64-none-elf-as.exe"
-    ld = f"{tool_dir}aarch64-none-elf-ld.exe"
+    cxx = f"{tool_dir}aarch64-none-elf-g++{ext_bin}"
+    as_tool = f"{tool_dir}aarch64-none-elf-as{ext_bin}"
+    ld = f"{tool_dir}aarch64-none-elf-ld{ext_bin}"
+
 
     cxxflags = "-O2 -mcpu=cortex-a57+crc+crypto -mtp=soft -fPIE -std=c++14 -fno-rtti -fno-exceptions -c"
     asflags = "-mcpu=cortex-a57+crc+crypto"
