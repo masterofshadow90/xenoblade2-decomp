@@ -17,8 +17,8 @@
   "objects": [
     {
       "name": "main",
-      "base_path": "build/base/main.o",
-      "target_path": "build/target/main.o"
+      "base_path": "build/base",
+      "target_path": "build/target"
     }
   ]
 }
