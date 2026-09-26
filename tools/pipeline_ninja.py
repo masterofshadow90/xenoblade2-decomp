@@ -121,11 +121,15 @@ def main():
                         n.write(f"build {base_obj}: assemble_s {asm_file}\n")
                         asm_objects.append(base_obj)
                     
-                    objdiff_objects.append({
+                    obj_entry = {
                         "name": Path(rel_path).stem,
-                        "base_path": base_obj if asm_file else "",
                         "target_path": target_obj
-                    })
+                    }
+                    # Solo añadimos la clave base_path si físicamente existe su archivo .s
+                    if asm_file:
+                        obj_entry["base_path"] = base_obj
+                        
+                    objdiff_objects.append(obj_entry)
 
         all_targets_str = " ".join(cpp_objects)
         n.write(f"\nbuild build/main.elf: link_elf {all_targets_str}\n")
