@@ -38,17 +38,12 @@ jobs:
           python3 tools/pipeline_ninja.py
           ninja
 
-      # 5. Descargar objdiff-cli usando la API oficial de GitHub (Inmune a modificaciones de texto)
+      # 5. Descargar objdiff-cli original y generar el reporte JSON requerido por decomp.dev
       - name: Run objdiff CLI
         run: |
-          # Obtenemos la URL de descarga directa de la API de GitHub para evitar texto plano vulnerable
           DOWNLOAD_URL=$(curl -s https://github.com | jq -r '.assets[] | select(.name == "objdiff-cli-linux-x86_64") | .browser_download_url')
-          
-          # Descargamos el binario real usando la variable blindada
           wget "$DOWNLOAD_URL" -O objdiff-cli
           chmod +x objdiff-cli
-          
-          # Ejecutamos el reporte usando la configuración estructurada por tu script
           ./objdiff-cli report --config objdiff.json --output progress.json
 
       # 6. Publicar el artefacto para que decomp.dev lo absorba automáticamente
