@@ -39,14 +39,11 @@ jobs:
           ninja
 
       # 5. Descargar objdiff-cli original y generar el reporte JSON requerido por decomp.dev
-      # Se actualiza el parámetro --project por --config según la CLI moderna
       - name: Run objdiff CLI
         run: |
           wget https://github.com -O objdiff-cli
           chmod +x objdiff-cli
           ./objdiff-cli report --config objdiff.json --output progress.json
-
-
 
       # 6. Publicar el artefacto para que decomp.dev lo absorba automáticamente
       - name: Upload Progress Artifact
