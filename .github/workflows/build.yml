@@ -47,20 +47,20 @@ jobs:
           latest: true
           fileName: "objdiff-cli-linux-x86_64"
 
-      # 6. Renombrar, dar permisos y generar el reporte JSON final para decomp.dev
+      # 6. Renombrar, dar permisos y generar el reporte JSON final usando la nomenclatura de versión de decomp.dev
       - name: Run objdiff CLI Report
         run: |
           mv objdiff-cli-linux-x86_64 objdiff-cli
           chmod +x objdiff-cli
-          ./objdiff-cli report generate -o progress.json
-          # Forzamos permisos de lectura global para que la API externa de decomp.dev no sea bloqueada
-          chmod 644 progress.json
+          ./objdiff-cli report generate -o F77F1559371C0EC6D50E78774AC59D95_report.json
+          chmod 644 F77F1559371C0EC6D50E78774AC59D95_report.json
 
-      # 7. Publicar el artefacto en la raíz del runner nativo (Bypassea el bloqueo de Docker)
+      # 7. Publicar el artefacto con el sufijo oficial _report requerido por el bot de la web
       - name: Upload Progress Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: progress
-          path: ./progress.json
+          name: F77F1559371C0EC6D50E78774AC59D95_report
+          path: ./F77F1559371C0EC6D50E78774AC59D95_report.json
           if-no-files-found: error
+
 
