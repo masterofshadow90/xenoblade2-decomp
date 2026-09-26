@@ -47,11 +47,12 @@ jobs:
           fileName: "objdiff-cli-linux-x86_64"
 
       # 6. Renombrar, dar permisos y generar el reporte JSON final para decomp.dev
+      # Se incluye el subcomando 'generate' y se cambia '--config' por la sintaxis nativa '-p' o directa
       - name: Run objdiff CLI Report
         run: |
           mv objdiff-cli-linux-x86_64 objdiff-cli
           chmod +x objdiff-cli
-          ./objdiff-cli report --config objdiff.json --output progress.json
+          ./objdiff-cli report generate --config objdiff.json --output progress.json
 
       # 7. Publicar el artefacto para que decomp.dev lo absorba automáticamente
       - name: Upload Progress Artifact
