@@ -29,9 +29,11 @@ def find_asm_fallback(clean_rel, repo_dir):
     return None
 
 def main():
-    repo_dir = Path(__file__).parent.resolve().parent.parent
+    repo_dir = Path(".").resolve()
     txt_path = repo_dir / "data" / "rutas.txt"
     ninja_path = repo_dir / "build.ninja"
+    objdiff_path = repo_dir / "objdiff.json"
+
 
     print("=============================================================================")
     print("   XENOENGINE NINJA PIPELINE ORCHESTRATOR - CYCLE LOOP REPAIR ACTIVE")
