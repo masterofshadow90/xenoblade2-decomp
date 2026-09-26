@@ -1,0 +1,20 @@
+# objdiff.yml - Configuración oficial para decomp.dev
+min_version: "2.0.0"
+
+custom_make: "make"
+target_dir: "build/target"
+base_dir: "build/base"
+build_base: false
+build_target: false
+
+# Patrones de búsqueda basados en tu configuración original de Xenoblade 2 (C++)
+watch_patterns:
+  - "src/**/*.cpp"
+  - "src/**/*.h"
+  - "asm/**/*.s"
+
+# Datos obligatorios para que decomp.dev identifique el ejecutable v2.1.0 de Switch
+metadata:
+  platform: "switch"
+  title_id: "0100E95004038000"
+  build_id: "F77F1559371C0EC6D50E78774AC59D95"

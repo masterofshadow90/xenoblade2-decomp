@@ -6,29 +6,26 @@ CXX      := $(TOOLDIR)/$(PREFIX)g++
 AS       := $(TOOLDIR)/$(PREFIX)as
 LD       := $(TOOLDIR)/$(PREFIX)ld
 
-CXXFLAGS := -O2 -march=armv8-a -std=c++14 -fno-rtti -fno-exceptions -c
-ASFLAGS  := -march=armv8-a
-LDFLAGS  := -shared -Ttext=0x002bcabc -Map=build/main.map
+BASEROM  := baserom/main.elf
+
+CXXFLAGS := -O2 -mcpu=cortex-a57+crc+crypto -mtp=soft -fPIE -std=c++14 -fno-rtti -fno-exceptions -c
+ASFLAGS  := -mcpu=cortex-a57+crc+crypto
+LDFLAGS  := -shared -Ttext=0x00100194 -Map=build/main.map
 
 # =========================================================================
 # 📦 ARQUITECTURA EN ESPEJO EN PARALELO (100% Seguro contra 'os error 3')
 # =========================================================================
 
-MODULE_DIRS := src src/gf/camera src/gf/camera/chain_attack src/gf/camera/fusion_combo \
-               src/gf/camera/gimmick src/gf/camera/plugin src/gf/camera/script \
-               src/gf/asset src/gf/data src/gf/field asm/gf
+MODULE_DIRS := src
 
-ASM_DIRS    := asm asm/gf/camera asm/gf/camera/chain_attack asm/gf/camera/fusion_combo \
-               asm/gf/camera/gimmick asm/gf/camera/plugin asm/gf/camera/script \
-               asm/gf/asset asm/gf/data asm/gf/field asm/gf
+ASM_DIRS    := asm
 
-# Descubrimiento plano absoluto e independiente
-CPPSOURCES  := $(foreach dir,$(MODULE_DIRS),$(wildcard $(dir)/*.cpp))
-ASM_SOURCES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
+# 🎯 RADAR RECURSIVO REVOLUCIONARIO: Busca en la raíz y en CUALQUIER subcarpeta automáticamente
+CPPSOURCES  := src/Monolithsoft/BF2/prog/application/BF2/main.cpp
+ASM_SOURCES := asm/Monolithsoft/BF2/prog/application/BF2/main.s
 
-# Mapeo simétrico forzado 1:1 (Garantiza que ambas carpetas nazcan en build/)
-C_OBJECTS   := $(patsubst src/%.cpp, build/target/%.o, $(CPPSOURCES))
-ASM_OBJECTS := $(patsubst asm/%.s, build/base/%.o, $(ASM_SOURCES))
+C_OBJECTS   := build/target/Monolithsoft/BF2/prog/application/BF2/main.o
+ASM_OBJECTS := build/base/Monolithsoft/BF2/prog/application/BF2/main.o
 
 # =========================================================================
 # 🏁 REGLAS DE COMPILACIÓN (Enlaza sólo Target para evitar colisiones en main.elf)

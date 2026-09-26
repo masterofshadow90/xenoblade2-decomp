@@ -1,31 +1,60 @@
-name: Decompilation Progress CI
+name: Decompilation Progress Report
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-cache-dependency-path: 'tools/requirements.txt'
+      # 1. Instalar dependencias del sistema y Ninja
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build wget libarchive-tools
 
-    - name: Install dependencies
-      run: |
-        pip install splat objdiff-cli
+      # 2. Instalar el toolchain oficial de devkitPro para Nintendo Switch (ARM64)
+      - name: Install devkitPro (devkitA64)
+        run: |
+          wget https://github.com
+          sudo dpkg -i devkitpro-pacman.amd64.deb
+          sudo dkp-pacman -Syy --noconfirm
+          sudo dkp-pacman -S --noconfirm devkitA64
+          echo "DEVKITPRO=/opt/devkitpro" >> $GITHUB_ENV
+          echo "DEVKITA64=/opt/devkitpro/devkitA64" >> $GITHUB_ENV
 
-    - name: Run configure script
-      run: |
-        python3 configure.py
+      # 3. Corregir las rutas de Windows a Linux en tu orquestador de Python sobre la marcha
+      - name: Adjust Pipeline Tools Path for Linux CI
+        run: |
+          sed -i 's|D:/devkitPro/devkitA64/bin/|/opt/devkitpro/devkitA64/bin/|g' pipeline_ninja.py
 
-    - name: Run build verification
-      run: |
-        python3 tools/convertir_non_matching.py
+      # 4. Crear directorios base necesarios (evita errores de Ninja al compilar los .o)
+      - name: Create Build Directories
+        run: |
+          mkdir -p build/base build/target data
+
+      # 5. Generar el plano build.ninja ejecutando tu script y compilar el proyecto
+      - name: Run Orchestrator and Build
+        run: |
+          python3 pipeline_ninja.py
+          ninja
+
+      # 6. Descargar objdiff-cli y generar el reporte JSON requerido por decomp.dev
+      - name: Run objdiff CLI
+        run: |
+          wget https://github.com -O objdiff-cli
+          chmod +x objdiff-cli
+          ./objdiff-cli report --project . --output progress.json
+
+      # 7. Publicar el artefacto para que decomp.dev lo absorba automáticamente
+      - name: Upload Progress Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: progress
+          path: progress.json

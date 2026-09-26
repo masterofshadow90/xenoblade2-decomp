@@ -7,7 +7,8 @@ options:
   architecture: aarch64
   compiler: clang
   base_path: ..
-  target_path: baserom/main_uncompressed.bin
+  target_path: baserom/main.elf
+  basename: main
   asm_path: asm
   src_path: src
   build_path: build
@@ -21,19 +22,99 @@ segments:
     type: header
     start: 0x0
 
-  - name: text
-    type: code
-    start: 0x100000
-    vram: 0x7100000000
-
-  - name: rodata
-    type: rodata
-    start: 0x86b4000
-
-  - name: data
+  - name: segment_0.1
     type: data
-    start: 0xa57d000
+    start: 0x100000
 
-  - name: bss
+  - name: .init
+    type: code
+    start: 0x100024
+
+  - name: .fini
+    type: code
+    start: 0x100160
+
+  - name: .text
+    type: code
+    start: 0x100194
+    vram: 0x00100194
+
+  - name: .plt
+    type: code
+    start: 0x9b2170
+
+  - name: segment_1.1
+    type: data
+    start: 0x9b4000
+
+  - name: .rela.dyn
+    type: data
+    start: 0x9b4048
+
+  - name: .rela.plt
+    type: data
+    start: 0xa70a78
+
+  - name: .hash
+    type: data
+    start: 0xa72da0
+
+  - name: .gnu.hash
+    type: data
+    start: 0xa73880
+
+  - name: .dynsym
+    type: data
+    start: 0xa73938
+
+  - name: .dynstr
+    type: data
+    start: 0xa76188
+
+  - name: .rodata
+    type: rodata
+    start: 0xa7a997
+
+  - name: .eh_frame_hdr
+    type: rodata
+    start: 0xad82f0
+
+  - name: .eh_frame
+    type: rodata
+    start: 0xb1d910
+
+  - name: .note
+    type: data
+    start: 0xc38c74
+
+  - name: segment_1.14
+    type: data
+    start: 0xc38c94
+
+  - name: .data
+    type: data
+    start: 0xc39000
+
+  - name: .dynamic
+    type: data
+    start: 0xb81590
+
+  - name: .got.plt
+    type: data
+    start: 0xc81740
+
+  - name: .got
+    type: data
+    start: 0xc82310
+
+  - name: segment_2.6
+    type: data
+    start: 0xc8d8a8
+
+  - name: .init_array
+    type: data
+    start: 0xc8e758
+
+  - name: .bss
     type: bss
-    start: 0xb4c218
+    start: 0xc8ed98  

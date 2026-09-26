@@ -1,5 +1,0 @@
-// Función: FUN_0091baf8 (Módulo: FUN_0091b)
-
-void FUN_0091baf8(void) {
-    __asm__("nop");
-}
