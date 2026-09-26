@@ -53,11 +53,14 @@ jobs:
           mv objdiff-cli-linux-x86_64 objdiff-cli
           chmod +x objdiff-cli
           ./objdiff-cli report generate -o progress.json
-          ls -lh progress.json
+          # Forzamos permisos de lectura global para que la API externa de decomp.dev no sea bloqueada
+          chmod 644 progress.json
 
-      # 7. Publicar el artefacto para que decomp.dev lo absorba automáticamente
+      # 7. Publicar el artefacto en la raíz del runner nativo (Bypassea el bloqueo de Docker)
       - name: Upload Progress Artifact
         uses: actions/upload-artifact@v4
         with:
           name: progress
-          path: progress.json
+          path: ./progress.json
+          if-no-files-found: error
+
