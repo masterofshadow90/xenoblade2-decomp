@@ -53,6 +53,7 @@ jobs:
           mv objdiff-cli-linux-x86_64 objdiff-cli
           chmod +x objdiff-cli
           ./objdiff-cli report generate -o progress.json
+          ls -lh progress.json
 
       # 7. Publicar el artefacto para que decomp.dev lo absorba automáticamente
       - name: Upload Progress Artifact
