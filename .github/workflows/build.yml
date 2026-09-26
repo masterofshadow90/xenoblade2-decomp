@@ -16,30 +16,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 1. Instalar herramientas adicionales necesarias
+      # 1. Install additional required runtime tools
       - name: Install Runtime Dependencies
         run: |
           apt-get update
           apt-get install -y ninja-build wget
 
-      # 2. Corregir las rutas de Windows a Linux apuntando DIRECTAMENTE a la carpeta tools
+      # 2. Fix compiler paths from Windows format to Linux format inside the tools folder
       - name: Adjust Pipeline Tools Path for Linux CI
         run: |
           sed -i 's|D:/devkitPro/devkitA64/bin/|/opt/devkitpro/devkitA64/bin/|g' tools/pipeline_ninja.py
 
-      # 3. Crear directorios base necesarios para los .o
+      # 3. Create required output base and target directories for object files
       - name: Create Build Directories
         run: |
           mkdir -p build/base build/target data
 
-      # 4. Generar el plano build.ninja y mover el objdiff.json generado a la raíz
+      # 4. Generate build.ninja orchestrator layout and move the generated objdiff configuration map to root
       - name: Run Orchestrator and Build
         run: |
           python3 tools/pipeline_ninja.py
           if [ -f tools/objdiff.json ]; then mv tools/objdiff.json ./objdiff.json; fi
           ninja
 
-      # 5. Descargar objdiff-cli usando la Action oficial de GitHub
+      # 5. Retrieve the targeted objdiff-cli binary using the official GitHub Release action module
       - name: Download objdiff CLI via Official Release Action
         uses: robinraju/release-downloader@v1.11
         with:
@@ -47,7 +47,7 @@ jobs:
           latest: true
           fileName: "objdiff-cli-linux-x86_64"
 
-      # 6. Renombrar, dar permisos y generar el reporte JSON final usando la nomenclatura de versión de decomp.dev
+      # 6. Format execution permissions and generate the final progress data payload utilizing decomp.dev naming scheme
       - name: Run objdiff CLI Report
         run: |
           mv objdiff-cli-linux-x86_64 objdiff-cli
@@ -55,7 +55,7 @@ jobs:
           ./objdiff-cli report generate -o F77F1559371C0EC6D50E78774AC59D95_report.json
           chmod 644 F77F1559371C0EC6D50E78774AC59D95_report.json
 
-      # 7. Publicar el artefacto con el sufijo oficial _report requerido por el bot de la web
+      # 7. Publish the resulting JSON archive using the official build_id naming convention required by the platform backend
       - name: Upload Progress Artifact
         uses: actions/upload-artifact@v4
         with:
