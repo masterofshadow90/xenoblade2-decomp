@@ -13,12 +13,5 @@
     "src/**/*.c",
     "src/**/*.h",
     "asm/**/*.s"
-  ],
-  "objects": [
-    {
-      "name": "main",
-      "base_path": "build/base",
-      "target_path": "build/target"
-    }
   ]
 }
