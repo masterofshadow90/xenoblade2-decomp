@@ -8,60 +8,46 @@ on:
 
 jobs:
   build:
+    # Usamos la imagen oficial de devkitPro que ya tiene los compiladores de Switch
     runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkita64:latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 1. Instalar dependencias del sistema y Ninja
-      - name: Install System Dependencies
+      # 1. Instalar herramientas adicionales necesarias dentro del contenedor
+      - name: Install Runtime Dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ninja-build wget libarchive-tools
+          apt-get update
+          apt-get install -y ninja-build wget
 
-      # 2. Descargar y ejecutar el script oficial automatizado de devkitPro
-      - name: Install devkitPro Repository & devkitA64
-        run: |
-          # Descargar el instalador de pacman oficial para entornos Debian/Ubuntu
-          wget https://apt.devkitpro.org/install-devkitpro-pacman
-          chmod +x ./install-devkitpro-pacman
-          
-          # Ejecutar la instalación con permisos de administrador en modo silencioso (no interactivo)
-          sudo ./install-devkitpro-pacman --noconfirm
-          
-          # Actualizar repositorios e instalar directamente el compilador de Switch (devkitA64)
-          sudo dkp-pacman -Syy --noconfirm
-          sudo dkp-pacman -S --noconfirm devkitA64
-          
-          # Configurar variables de entorno globales obligatorias
-          echo "DEVKITPRO=/opt/devkitpro" >> $GITHUB_ENV
-          echo "DEVKITA64=/opt/devkitpro/devkitA64" >> $GITHUB_ENV
-
-
-      # 3. Corregir las rutas de Windows a Linux en tu orquestador de Python sobre la marcha
+      # 2. Corregir las rutas de Windows a Linux en tu orquestador de Python
       - name: Adjust Pipeline Tools Path for Linux CI
         run: |
           sed -i 's|D:/devkitPro/devkitA64/bin/|/opt/devkitpro/devkitA64/bin/|g' pipeline_ninja.py
 
-      # 4. Crear directorios base necesarios (evita errores de Ninja al compilar los .o)
+      # 3. Crear directorios base necesarios para los .o
       - name: Create Build Directories
         run: |
           mkdir -p build/base build/target data
 
-      # 5. Generar el plano build.ninja ejecutando tu script y compilar el proyecto
+      # 4. Generar el plano build.ninja ejecutando tu script y compilar el proyecto
       - name: Run Orchestrator and Build
         run: |
           python3 pipeline_ninja.py
           ninja
 
-      # 6. Descargar objdiff-cli y generar el reporte JSON requerido por decomp.dev
+      # 5. Descargar objdiff-cli y generar el reporte JSON requerido por decomp.dev
+      # Usamos el binario de Linux de objdiff que se ejecutará sin problemas en el contenedor
       - name: Run objdiff CLI
         run: |
           wget https://github.com -O objdiff-cli
           chmod +x objdiff-cli
           ./objdiff-cli report --project . --output progress.json
 
-      # 7. Publicar el artefacto para que decomp.dev lo absorba automáticamente
+      # 6. Publicar el artefacto para que decomp.dev lo absorba automáticamente
       - name: Upload Progress Artifact
         uses: actions/upload-artifact@v4
         with:
