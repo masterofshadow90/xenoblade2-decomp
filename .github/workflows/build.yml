@@ -38,10 +38,13 @@ jobs:
           python3 tools/pipeline_ninja.py
           ninja
 
-      # 5. Descargar objdiff-cli original y generar el reporte JSON requerido por decomp.dev
+      # 5. Descargar objdiff-cli usando fragmentos de texto separados que tu script no puede romper
       - name: Run objdiff CLI
+        env:
+          GH_API: "://github.com"
+          GH_REPO: "encounter/objdiff"
         run: |
-          DOWNLOAD_URL=$(curl -s https://github.com | jq -r '.assets[] | select(.name == "objdiff-cli-linux-x86_64") | .browser_download_url')
+          DOWNLOAD_URL=$(curl -s "https://${GH_API}/repos/${GH_REPO}/releases/latest" | jq -r '.assets[] | select(.name == "objdiff-cli-linux-x86_64") | .browser_download_url')
           wget "$DOWNLOAD_URL" -O objdiff-cli
           chmod +x objdiff-cli
           ./objdiff-cli report --config objdiff.json --output progress.json
