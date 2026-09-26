@@ -19,15 +19,24 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ninja-build wget libarchive-tools
 
-      # 2. Instalar el toolchain oficial de devkitPro para Nintendo Switch (ARM64)
-      - name: Install devkitPro (devkitA64)
+      # 2. Descargar y ejecutar el script oficial automatizado de devkitPro
+      - name: Install devkitPro Repository & devkitA64
         run: |
-          wget https://github.com
-          sudo dpkg -i devkitpro-pacman.amd64.deb
+          # Descargar el instalador de pacman oficial para entornos Debian/Ubuntu
+          wget https://apt.devkitpro.org/install-devkitpro-pacman
+          chmod +x ./install-devkitpro-pacman
+          
+          # Ejecutar la instalación con permisos de administrador en modo silencioso (no interactivo)
+          sudo ./install-devkitpro-pacman --noconfirm
+          
+          # Actualizar repositorios e instalar directamente el compilador de Switch (devkitA64)
           sudo dkp-pacman -Syy --noconfirm
           sudo dkp-pacman -S --noconfirm devkitA64
+          
+          # Configurar variables de entorno globales obligatorias
           echo "DEVKITPRO=/opt/devkitpro" >> $GITHUB_ENV
           echo "DEVKITA64=/opt/devkitpro/devkitA64" >> $GITHUB_ENV
+
 
       # 3. Corregir las rutas de Windows a Linux en tu orquestador de Python sobre la marcha
       - name: Adjust Pipeline Tools Path for Linux CI
