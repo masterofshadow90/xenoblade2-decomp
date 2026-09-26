@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# =============================================================================
-# 🥷 XENOENGINE NINJA & OBJDIFF PIPELINE GENERATOR - DECOMP.DEV VALIDATION FIX
-# =============================================================================
+# ===========================================================================
+# XENOENGINE NINJA & OBJDIFF PIPELINE GENERATOR - DECOMP.DEV VALIDATION FIX
+# ===========================================================================
 import os
 import re
 import json
@@ -56,6 +56,7 @@ def main():
     as_tool = f"{tool_dir}aarch64-none-elf-as{ext_bin}"
     ld = f"{tool_dir}aarch64-none-elf-ld{ext_bin}"
 
+# Standard toolchain flags matching Nintendo Switch AArch64 hardware configuration
     cxxflags = "-O2 -mcpu=cortex-a57+crc+crypto -mtp=soft -fPIE -std=c++14 -fno-rtti -fno-exceptions -c"
     asflags = "-mcpu=cortex-a57+crc+crypto"
     ldflags = "-shared -Ttext=0x00100194 -Map=build/main.map"
