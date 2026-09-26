@@ -32,14 +32,14 @@ jobs:
         run: |
           mkdir -p build/base build/target data
 
-      # 4. Generar el plano build.ninja ejecutando tu script y mover el objdiff.json autogenerado a la raíz
-       Berk: Run Orchestrator and Build run: |
+      # 4. Generar el plano build.ninja y mover el objdiff.json generado a la raíz
+      - name: Run Orchestrator and Build
+        run: |
           python3 tools/pipeline_ninja.py
           if [ -f tools/objdiff.json ]; then mv tools/objdiff.json ./objdiff.json; fi
           ninja
 
-
-      # 5. Descargar objdiff-cli usando la Action oficial de GitHub (El script de Python no puede corromperla)
+      # 5. Descargar objdiff-cli usando la Action oficial de GitHub
       - name: Download objdiff CLI via Official Release Action
         uses: robinraju/release-downloader@v1.11
         with:
@@ -60,4 +60,3 @@ jobs:
         with:
           name: progress
           path: progress.json
-
