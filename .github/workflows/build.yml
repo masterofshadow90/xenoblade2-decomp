@@ -38,7 +38,8 @@ jobs:
           python3 tools/pipeline_ninja.py
           ninja
 
-      # 5. Descargar objdiff-cli y generar el reporte JSON requerido por decomp.dev
+      # 5. Descargar objdiff-cli original y generar el reporte JSON requerido por decomp.dev
+      # Usamos la URL directa de descarga de las releases oficiales de encounter
       - name: Run objdiff CLI
         run: |
           wget https://github.com -O objdiff-cli
